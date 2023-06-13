@@ -17,7 +17,7 @@ void GameBoard::Copy(const GameBoard& target)
 {
 	if (target.boardWidth != boardWidth ||
 		target.boardHeight != boardHeight)
-		throw 1;
+		return;
 
 	std::copy(&target.board[0], &target.board[0] + (boardWidth * boardHeight), board);
 }
@@ -35,7 +35,7 @@ const int& GameBoard::GetHeight() const
 const int& GameBoard::GetData(int x, int y) const
 {
 	if (!IsValidCoord(x, y))
-		throw 2;
+		return 0;
 
 	return board[boardWidth * y + x];
 }
@@ -43,7 +43,7 @@ const int& GameBoard::GetData(int x, int y) const
 void GameBoard::SetData(int x, int y, int data)
 {
 	if (!IsValidCoord(x, y))
-		throw 2;
+		return;
 
 	board[boardWidth * y + x] = data;
 }

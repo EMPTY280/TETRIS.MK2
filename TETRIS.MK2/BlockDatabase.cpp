@@ -2,6 +2,14 @@
 
 BlockDatabase* BlockDatabase::instance = nullptr;
 
+BlockDatabase& BlockDatabase::GetInstance()
+{
+	if (!instance)
+		instance = new BlockDatabase();
+
+	return *instance;
+}
+
 BlockDatabase::BlockDatabase()
 {
 	AddNewBlock(Console::Color::SKYBLUE, { {0, 0}, {0, -1}, {0, -2}, {0, 1} });		// I
@@ -21,18 +29,10 @@ BlockDatabase::~BlockDatabase()
 	}
 }
 
-BlockDatabase& BlockDatabase::Data()
-{
-	if (!instance)
-		instance = new BlockDatabase();
-
-	return *instance;
-}
-
-const vector<pair<int, int>>& BlockDatabase::GetBlockMatrix(int index) const
+const Matrix& BlockDatabase::GetBlockMatrix(int index) const
 {
 	if (!IsIndexValid(index))
-		throw 0;
+		return Matrix();
 
 	return blocks.at(index)->GetMatrix();
 }
@@ -40,7 +40,7 @@ const vector<pair<int, int>>& BlockDatabase::GetBlockMatrix(int index) const
 const Console::Color& BlockDatabase::GetBlockColor(int index) const
 {
 	if (!IsIndexValid(index))
-		throw 0;
+		return Console::Color::BLACK;
 
 	return blocks.at(index)->GetColor();
 }
@@ -57,7 +57,7 @@ bool BlockDatabase::IsIndexValid(int index) const
 	return true;
 }
 
-void BlockDatabase::AddNewBlock(Console::Color color, vector<pair<int, int>> matrix)
+void BlockDatabase::AddNewBlock(Console::Color color, Matrix matrix)
 {
 	BlockType* newBlock = new BlockType(color, matrix);
 

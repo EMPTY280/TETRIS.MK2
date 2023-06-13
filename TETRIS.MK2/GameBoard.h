@@ -21,5 +21,6 @@ public:
 
 	void SetData(int x, int y, int data);
 
+	// 유효한 좌표인가?
 	const bool IsValidCoord(int x, int y) const;
 };

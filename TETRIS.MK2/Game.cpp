@@ -63,11 +63,12 @@ const void Game::Render()
 			if (blockTypeIndex != -1)
 			{
 				marker = "бс";
-				Console::Color c = BlockDatabase::Data().GetBlockColor(blockTypeIndex);
+				Console::Color c = BlockDatabase::GetInstance().GetBlockColor(blockTypeIndex);
 				Console::SetColor(c);
 			}
 			cout << marker;
 		}
+
 		cout << endl;
 	}
 }

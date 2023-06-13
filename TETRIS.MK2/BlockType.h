@@ -3,16 +3,16 @@
 #include <vector>
 #include "Console.h"
 
-using namespace std;
+typedef std::vector<std::pair<int, int>> Matrix;
 
 class BlockType
 {
 private:
 	Console::Color color;
-	vector<pair<int, int>> matrix;
+	Matrix matrix;
 
 public:
-	BlockType(Console::Color color, vector<pair<int, int>> matrix);
+	BlockType(Console::Color color, Matrix matrix);
 	const Console::Color& GetColor() const;
-	const vector<pair<int, int>>& GetMatrix() const;
+	const Matrix& GetMatrix() const;
 };
