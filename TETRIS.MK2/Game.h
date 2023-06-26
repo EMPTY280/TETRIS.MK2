@@ -13,16 +13,14 @@ private:
 	// 플레이어가 조작하는 블럭
 	BlockController* bControl;
 
+	bool gameOver = false;
+
 	// 게임 루프
-	bool Loop();
+	void Loop();
 	// 입력 처리
 	void Input();
 	// 매 프레임 연산
 	void Update(int tick);
-	// 고정 주기 연산
-	void FixedUpdate();
-	// FIXED UPDATE 주기
-	const int FIXED_UPDATE_MS;
 	// 주기 판정용
 	double prevTime = 0;
 	double curtTime = 0;
@@ -39,7 +37,7 @@ private:
 
 public:
 
-	Game(const int boardWidth, const int boardHeight, const int fixUdtMS);
+	Game(const int boardWidth, const int boardHeight);
 	~Game();
 
 	void Start();

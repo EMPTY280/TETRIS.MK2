@@ -25,7 +25,8 @@ public:
 	bool Rotate(bool clockwork);
 	void Place();
 
-	void NewBlock(int type);
+	// 생성 시 충돌이면 = 게임 오버이면 false 반환
+	bool NewBlock(int type);
 
 	Matrix GetMatrix();
 

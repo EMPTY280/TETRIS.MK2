@@ -14,10 +14,13 @@ void Game::Start()
 	Console::Clear();
 	prevTime = clock();
 
-	while(Loop());
+	while (!gameOver)
+	{
+		Loop();
+	}
 }
 
-bool Game::Loop()
+void Game::Loop()
 {
 	curtTime = clock();
 	int tick = curtTime - prevTime;
@@ -26,10 +29,7 @@ bool Game::Loop()
 
 	Input();
 	Update(tick);
-	FixedUpdate();
 	Render();
-
-	return true;
 }
 
 void Game::Input()
@@ -69,15 +69,6 @@ void Game::Update(int tick)
 		blockDropDelay -= blockDropTime;
 		DropBlock();
 	}
-}
-
-void Game::FixedUpdate()
-{
-	if (updateDelay < FIXED_UPDATE_MS)
-		return;
-	updateDelay -= FIXED_UPDATE_MS;
-
-
 }
 
 const void Game::Render()
@@ -122,6 +113,13 @@ const void Game::Render()
 
 		cout << endl;
 	}
+
+	if (!gameOver)
+		return;
+	Console::SetColor(Console::Color::WHITE);
+	Console::Move(1, 5);
+	cout << "G A M E  O V E R";
+	Console::Move(0, board->GetHeight() + 1);
 }
 
 bool Game::DropBlock()
@@ -130,12 +128,13 @@ bool Game::DropBlock()
 	{
 		bControl->Place();
 		board->TryRemoveLine();
+		gameOver = !(bControl->NewBlock(rand() % 7));
 		return false;
 	}
 	return true;
 }
 
-Game::Game(const int boardWidth, const int boardHeight, const int fixUdtMS) : FIXED_UPDATE_MS(fixUdtMS)
+Game::Game(const int boardWidth, const int boardHeight)
 {
 	board = new GameBoard(boardWidth, boardHeight);
 	renderBuffer = new GameBoard(boardWidth, boardHeight);

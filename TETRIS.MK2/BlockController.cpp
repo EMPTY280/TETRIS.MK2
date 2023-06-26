@@ -69,11 +69,15 @@ bool BlockController::Rotate(bool clockwork)
 	}
 }
 
-void BlockController::NewBlock(int type)
+bool BlockController::NewBlock(int type)
 {
 	this->type = type;
 	matrix = BlockDatabase::GetInstance().GetBlockMatrix(type);
 	position = { 4, 0 };
+
+	if (!IsValid())
+		return false;
+	return true;
 }
 
 Matrix BlockController::GetMatrix()
@@ -90,7 +94,6 @@ void BlockController::Place()
 
 		board->SetData(xx, yy, type);
 	}
-	NewBlock(rand() % 7);
 }
 
 bool BlockController::IsValid()
