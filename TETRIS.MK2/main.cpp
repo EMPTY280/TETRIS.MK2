@@ -6,6 +6,7 @@
 
 int main()
 {
+	srand((unsigned)time(NULL));
 	Console::HideCursor();
 
 	Game* game = new Game(10, 20, 1000);

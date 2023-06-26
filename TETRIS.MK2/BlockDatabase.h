@@ -11,12 +11,11 @@ private:
 
 	std::vector<BlockType*> blocks;
 
+	BlockDatabase();
 public:
 
 	// 싱글톤 인스턴스 반환
 	static BlockDatabase& GetInstance();
-
-	BlockDatabase();
 	~BlockDatabase();
 
 	// 각각 블록 행렬 / 색상 반환

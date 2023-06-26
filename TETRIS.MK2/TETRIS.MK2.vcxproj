@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockController.cpp" />
     <ClCompile Include="BlockDatabase.cpp" />
     <ClCompile Include="BlockType.cpp" />
     <ClCompile Include="Console.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlockController.h" />
     <ClInclude Include="BlockDatabase.h" />
     <ClInclude Include="BlockType.h" />
     <ClInclude Include="Console.h" />

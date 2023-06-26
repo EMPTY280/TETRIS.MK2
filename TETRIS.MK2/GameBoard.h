@@ -19,6 +19,10 @@ public:
 	const int& GetHeight() const;
 	const int& GetData(int x, int y) const;
 
+	void TryRemoveLine();
+	void CopyLine(int src, int dest);
+	void ClearLine(int idx);
+
 	void SetData(int x, int y, int data);
 
 	// 유효한 좌표인가?
